@@ -1,31 +1,32 @@
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
-
-globalFile = None
-
-
-def choose_file():
-    filename = askopenfilename()
-    with open(filename, 'w') as file:
-        chosen_file = file.write('file')
-        file_path_lbl = tk.Label(
-            text=filename
-        )
-
-        file_path_lbl.pack()
-        globalFile = chosen_file
+from tkinter.filedialog import asksaveasfilename
 
 
-def save():
-    text_to_write = file_text.get(1.0, tk.END)
-    globalFile.write(text_to_write)
+def save_chosen_file():
+    chosen_file = asksaveasfilename()
+    file_input = file_text.get("1.0", 'end-1c')
+    with open(chosen_file, 'w') as file:
+        file.write(file_input)
+
+
+def open_file():
+    choose_file = askopenfilename()
+    file_name_lbl = tk.Label(
+        text=choose_file
+    )
+
+    with open(choose_file, 'r') as f:
+        file_text.insert(1.0, f.read())
+
+    file_name_lbl.pack()
 
 
 main_window = tk.Tk()
 
-open_button = tk.Button(
-    text='Open',
-    command=choose_file
+save_button = tk.Button(
+    text='Save',
+    command=save_chosen_file
 )
 
 file_text = tk.Text()
@@ -35,9 +36,9 @@ quit_button = tk.Button(
     command=quit
 )
 
-save_button = tk.Button(
-    text='Save',
-    command=save
+open_button = tk.Button(
+    text='Open',
+    command=open_file
 )
 quit_button.pack()
 file_text.pack()
