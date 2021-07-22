@@ -16,6 +16,8 @@ def open_file():
 
     file_text.delete("1.0", "end-1c")
 
+    file_text.delete("1.0", "end-1c")
+
     with open(choose_file, 'r') as f:
         file_text.insert(1.0, f.read())
 

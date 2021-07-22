@@ -1,1 +1,1 @@
-There is nothing to say yet. It should become a working text editor.
+it finally works, it could be better, but if you want to use it you can
