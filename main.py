@@ -12,16 +12,12 @@ def save_chosen_file():
 
 def open_file():
     choose_file = askopenfilename()
-    file_name_lbl = tk.Label(
-        text=choose_file
-    )
+    file_name_lbl.config(text=choose_file)
 
     file_text.delete("1.0", "end-1c")
 
     with open(choose_file, 'r') as f:
         file_text.insert(1.0, f.read())
-
-    file_name_lbl.pack()
 
 
 main_window = tk.Tk()
@@ -32,6 +28,7 @@ save_button = tk.Button(
 )
 
 file_text = tk.Text()
+file_name_lbl = tk.Label()
 
 quit_button = tk.Button(
     text='Quit',
@@ -42,8 +39,10 @@ open_button = tk.Button(
     text='Open',
     command=open_file
 )
+
 quit_button.pack()
 file_text.pack()
 open_button.pack()
 save_button.pack()
+file_name_lbl.pack()
 main_window.mainloop()
